@@ -1,10 +1,8 @@
+
+
+
 class Board:
-    
-    common_commands = [
-        "scoreboard", 
-        "show board", 
-        "rules"
-        ]
+
     
     
     
@@ -24,7 +22,12 @@ class Board:
         self.turn_counter = 1
         self.player_symbol = {}
         self.end = False       
-        
+        self.common_commands = [
+            "scoreboard", 
+            "show board", 
+            "rules",
+            "commands / command"
+        ]
         
         
     def rules(self):
@@ -38,6 +41,25 @@ class Board:
         
     def get_board(self):
         return(self.board)
+    
+    
+    def check_common_commands(self,text: str):
+            match text:
+                case "scoreboard":
+                    pass
+                case "show board":
+                    self.get_board()
+                    text = input("And your decision will be: ")
+                case "rules":
+                    self.rules()
+                    text = input("And your decision will be: ")
+                case "commands" | "command":
+                    print(self.common_commands)
+                    text = input("And your decision will be: ")
+                case _:
+                    return text
+            return self.check_common_commands(text)
+    
     
     def check_victory(self, symbol):
         if self.turn_counter > 2:
@@ -123,7 +145,7 @@ class Board:
             for player in player_names:
                 self.player = player
                 print(f"{player} chooses position:")
-                position = (int(input("Row: ")), int(input("Column: ")))
+                position = (int(self.check_common_commands(input("Row: "))), int(self.check_common_commands(input("Column: "))))
                 
                 #self.check_commands(position)
         

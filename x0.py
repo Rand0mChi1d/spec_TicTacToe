@@ -1,6 +1,11 @@
 from board import *
 
 # did not substract 1 from position, size and goal... they are counted from 1!
+
+
+
+
+
 def main():
     player_names = [input("First challenger, name yourself!\n"), input("Their opponent is known as the mighty...:\n")]
     for player in player_names: 
@@ -14,6 +19,7 @@ def main():
     if goal > size: goal = size
     
     play_again = "y"
+
     
 
     
@@ -26,7 +32,7 @@ def main():
     while play_again == "y":
         play_again = "n"
         game.play_game(game, player_names)
-        play_again = input("Rematch? (y/n): ")
+        play_again = game.check_common_commands(input("Rematch? (y/n): "))
         if play_again != "y" and play_again != "n":
             print(f"You've played for {round_count} rounds. But now it's...")
             print("Game over...")
@@ -40,8 +46,5 @@ def main():
             
 
 main()
-                
-            
-    
         
     
